@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Memorizer.Models;
 
 namespace Memorizer.Server.Data
 {
@@ -17,5 +18,11 @@ namespace Memorizer.Server.Data
             IOptions<OperationalStoreOptions> operationalStoreOptions) : base(options, operationalStoreOptions)
         {
         }
+
+        public DbSet<StudyingEntityWord> StudyingEntityWords { get; set; }
+        public DbSet<StudyingEntityText> StudyingEntityTexts { get; set; }
+        public DbSet<StudyingProcesInfo> StudyingProcesInfos { get; set; }
+        public DbSet<Word> Words { get; set; }
+        public DbSet<Text> Texts { get; set; }
     }
 }

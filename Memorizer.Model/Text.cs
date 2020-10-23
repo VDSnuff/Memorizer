@@ -1,15 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Text;
 
-namespace Memorize.Server.Models
+namespace Memorizer.Models
 {
-    public class PhraseENRU
+   public class Text
     {
         [Key]
         public string Id { get; set; }
+        public string Topic { get; set; }
         public string Value { get; set; }
-        public string Translation { get; set; }
-        public string Definition { get; set; }
+        public string Language { get; set; }
     }
 }

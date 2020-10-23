@@ -1,12 +1,12 @@
-﻿using Microsoft.AspNetCore.Identity;
-using System;
+﻿using Memorizer.Models;
+using Microsoft.AspNetCore.Identity;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Memorizer.Server.Models
 {
     public class ApplicationUser : IdentityUser
     {
+        public ICollection<StudyingEntityText> StudyingEntityTexts { set; get; }
+        public ICollection<StudyingEntityWord> StudyingEntityWords { set; get; }
     }
 }

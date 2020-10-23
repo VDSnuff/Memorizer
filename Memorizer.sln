@@ -3,17 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30611.23
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Memorizer.Server", "Memorizer\Server\Memorizer.Server.csproj", "{5DFD94B2-D0EE-4C74-9488-E0DEF892F54E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Memorizer.Server", "Memorizer\Server\Memorizer.Server.csproj", "{5DFD94B2-D0EE-4C74-9488-E0DEF892F54E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Memorizer.Client", "Memorizer\Client\Memorizer.Client.csproj", "{BD2E6476-28B3-4DF5-901B-2C3FBF9FEC1F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Memorizer.Client", "Memorizer\Client\Memorizer.Client.csproj", "{BD2E6476-28B3-4DF5-901B-2C3FBF9FEC1F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Memorizer.Shared", "Memorizer\Shared\Memorizer.Shared.csproj", "{82532B1C-FE4B-4391-8F8D-E3BB00B36799}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Memorizer.Shared", "Memorizer\Shared\Memorizer.Shared.csproj", "{82532B1C-FE4B-4391-8F8D-E3BB00B36799}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Memorizer.DAL", "Memorizer.DAL\Memorizer.DAL.csproj", "{29E15290-60C5-4C40-AADE-4530E0AE3598}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Memorizer.BL", "Memorizer.BL\Memorizer.BL.csproj", "{9A6252FC-F209-4B96-B12F-8AB6AEE3E77C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Memorizer.BL", "Memorizer.BL\Memorizer.BL.csproj", "{9A6252FC-F209-4B96-B12F-8AB6AEE3E77C}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Memorizer.Model", "Memorizer.Model\Memorizer.Model.csproj", "{3AA1FFED-48C1-4961-ADE1-E27D42509EC5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Memorizer.Models", "Memorizer.Model\Memorizer.Models.csproj", "{3AA1FFED-48C1-4961-ADE1-E27D42509EC5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,10 +31,6 @@ Global
 		{82532B1C-FE4B-4391-8F8D-E3BB00B36799}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{82532B1C-FE4B-4391-8F8D-E3BB00B36799}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{82532B1C-FE4B-4391-8F8D-E3BB00B36799}.Release|Any CPU.Build.0 = Release|Any CPU
-		{29E15290-60C5-4C40-AADE-4530E0AE3598}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{29E15290-60C5-4C40-AADE-4530E0AE3598}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{29E15290-60C5-4C40-AADE-4530E0AE3598}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{29E15290-60C5-4C40-AADE-4530E0AE3598}.Release|Any CPU.Build.0 = Release|Any CPU
 		{9A6252FC-F209-4B96-B12F-8AB6AEE3E77C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{9A6252FC-F209-4B96-B12F-8AB6AEE3E77C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9A6252FC-F209-4B96-B12F-8AB6AEE3E77C}.Release|Any CPU.ActiveCfg = Release|Any CPU

@@ -10,6 +10,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Memorizer.Model\Memorizer.Models.csproj" />
     <ProjectReference Include="..\Client\Memorizer.Client.csproj" />
     <ProjectReference Include="..\Shared\Memorizer.Shared.csproj" />
   </ItemGroup>
