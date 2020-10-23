@@ -28,12 +28,12 @@ namespace Memorizer.Server.Data
             return ctx.SaveChanges() > 0;
         }
 
-        public StudyingEntityText GetById(string id)
+        public StudyingEntityText GetById(int id)
         {
             return ctx.StudyingEntityTexts.Find(id);
         }
 
-        public StudyingEntityText Delete(string id)
+        public StudyingEntityText Delete(int id)
         {
             var studyingEntityText = GetById(id);
             if (studyingEntityText != null)

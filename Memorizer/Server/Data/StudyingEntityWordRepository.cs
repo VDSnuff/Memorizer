@@ -30,12 +30,12 @@ namespace Memorizer.Server.Data
             return ctx.SaveChanges() > 0;
         }
 
-        public StudyingEntityWord GetById(string id)
+        public StudyingEntityWord GetById(int id)
         {
             return ctx.StudyingEntityWords.Find(id);
         }
 
-        public StudyingEntityWord Delete(string id)
+        public StudyingEntityWord Delete(int id)
         {
             var studyingEntityWord = GetById(id);
             if (studyingEntityWord != null)

@@ -9,10 +9,10 @@ namespace Memorizer.Server.Data
     public interface IStudyingEntityWordRepository
     {
         IEnumerable<StudyingEntityWord> GetAll();
-        StudyingEntityWord GetById(string id);
+        StudyingEntityWord GetById(int id);
         StudyingEntityWord Update(StudyingEntityWord studyingEntityWord);
         StudyingEntityWord Add(StudyingEntityWord studyingEntityWord);
-        StudyingEntityWord Delete(string id);
+        StudyingEntityWord Delete(int id);
         bool Commit();
     }
 }

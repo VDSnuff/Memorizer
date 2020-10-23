@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Memorizer.Models
+﻿namespace Memorizer.Models
 {
     public enum StudyingDataType : int
     {
