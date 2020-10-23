@@ -103,8 +103,10 @@ namespace Memorizer.Server.Data.Migrations
 
             modelBuilder.Entity("Memorizer.Models.StudyingEntityText", b =>
                 {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("ApplicationUserId")
                         .HasColumnType("nvarchar(450)");
@@ -112,11 +114,11 @@ namespace Memorizer.Server.Data.Migrations
                     b.Property<int>("StudyingDataType")
                         .HasColumnType("int");
 
-                    b.Property<string>("StudyingProcesInfoId")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int?>("StudyingProcesInfoId")
+                        .HasColumnType("int");
 
-                    b.Property<string>("TextId")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int?>("TextId")
+                        .HasColumnType("int");
 
                     b.Property<string>("UserNote")
                         .HasColumnType("nvarchar(max)");
@@ -134,20 +136,25 @@ namespace Memorizer.Server.Data.Migrations
 
             modelBuilder.Entity("Memorizer.Models.StudyingEntityWord", b =>
                 {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("ApplicationUserId")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("StudyingProcesInfoId")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("StudyingDataType")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("StudyingProcesInfoId")
+                        .HasColumnType("int");
 
                     b.Property<string>("UserNote")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("WordId")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int?>("WordId")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -162,13 +169,15 @@ namespace Memorizer.Server.Data.Migrations
 
             modelBuilder.Entity("Memorizer.Models.StudyingProcesInfo", b =>
                 {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<DateTime>("CreationDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime>("LastRepetition")
+                    b.Property<DateTime?>("LastRepetition")
                         .HasColumnType("datetime2");
 
                     b.Property<int>("LearningStatus")
@@ -185,10 +194,32 @@ namespace Memorizer.Server.Data.Migrations
                     b.ToTable("StudyingProcesInfos");
                 });
 
+            modelBuilder.Entity("Memorizer.Models.Tag", b =>
+                {
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int?>("StudyingEntityTextId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("StudyingEntityWordId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Name");
+
+                    b.HasIndex("StudyingEntityTextId");
+
+                    b.HasIndex("StudyingEntityWordId");
+
+                    b.ToTable("Tags");
+                });
+
             modelBuilder.Entity("Memorizer.Models.Text", b =>
                 {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Language")
                         .HasColumnType("nvarchar(max)");
@@ -206,8 +237,10 @@ namespace Memorizer.Server.Data.Migrations
 
             modelBuilder.Entity("Memorizer.Models.Word", b =>
                 {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("AssociatedImage")
                         .HasColumnType("nvarchar(max)");
@@ -463,6 +496,17 @@ namespace Memorizer.Server.Data.Migrations
                     b.HasOne("Memorizer.Models.Word", "Word")
                         .WithMany()
                         .HasForeignKey("WordId");
+                });
+
+            modelBuilder.Entity("Memorizer.Models.Tag", b =>
+                {
+                    b.HasOne("Memorizer.Models.StudyingEntityText", null)
+                        .WithMany("Tags")
+                        .HasForeignKey("StudyingEntityTextId");
+
+                    b.HasOne("Memorizer.Models.StudyingEntityWord", null)
+                        .WithMany("Tags")
+                        .HasForeignKey("StudyingEntityWordId");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

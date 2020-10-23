@@ -24,5 +24,6 @@ namespace Memorizer.Server.Data
         public DbSet<StudyingProcesInfo> StudyingProcesInfos { get; set; }
         public DbSet<Word> Words { get; set; }
         public DbSet<Text> Texts { get; set; }
+        public DbSet<Tag> Tags { get; set; }
     }
 }

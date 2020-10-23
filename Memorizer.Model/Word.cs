@@ -14,17 +14,17 @@ namespace Memorizer.Models
         public string Language { get; set; }
         public string TranslationLanguage { get; set; }
 
-        public Word(string value, string synonyms, string translation, 
-                    string definition, string associatedImage, 
-                    string language, string translationLanguage)
-        {
-            Value = value;
-            Synonyms = synonyms;
-            Translation = translation;
-            Definition = definition;
-            AssociatedImage = associatedImage;
-            Language = language;
-            TranslationLanguage = translationLanguage;
-        }
+        //public Word(string value, string synonyms, string translation, 
+        //            string definition, string associatedImage, 
+        //            string language, string translationLanguage)
+        //{
+        //    Value = value;
+        //    Synonyms = synonyms;
+        //    Translation = translation;
+        //    Definition = definition;
+        //    AssociatedImage = associatedImage;
+        //    Language = language;
+        //    TranslationLanguage = translationLanguage;
+        //}
     }
 }
