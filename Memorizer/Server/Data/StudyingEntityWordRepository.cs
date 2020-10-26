@@ -45,7 +45,7 @@ namespace Memorizer.Server.Data
             return studyingEntityWord;
         }
 
-        public IEnumerable<StudyingEntityWord> GetAll()
+        public List<StudyingEntityWord> GetAll()
         {
             return ctx.StudyingEntityWords.Include(s => s.StudyingProcesInfo).Include(w => w.Word).ToList();
         }

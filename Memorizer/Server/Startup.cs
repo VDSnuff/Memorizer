@@ -33,6 +33,11 @@ namespace Memorizer.Server
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
 
+            services.AddScoped<IStudyingEntityWordRepository, StudyingEntityWordRepository>();
+            services.AddScoped<IStudyingEntityTextRepository, StudyingEntityTextRepository>();
+            services.AddScoped<ITagRepository, TagRepository>();
+
+
             services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 

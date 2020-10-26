@@ -9,13 +9,6 @@ namespace Memorizer.Models
         public int Id { get; set; }
         public string Topic { get; set; }
         public string Value { get; set; }
-        public string Language { get; set; }
-
-        //public Text(string topic, string value, string language)
-        //{
-        //    Topic = topic;
-        //    Value = value;
-        //    Language = language;
-        //}
+        public Language Language { get; set; }
     }
 }

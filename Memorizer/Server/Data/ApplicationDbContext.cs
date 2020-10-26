@@ -25,5 +25,9 @@ namespace Memorizer.Server.Data
         public DbSet<Word> Words { get; set; }
         public DbSet<Text> Texts { get; set; }
         public DbSet<Tag> Tags { get; set; }
+        public DbSet<Countries> Countries { get; set; }
+        public DbSet<Language> Languages { get; set; }
+
+
     }
 }

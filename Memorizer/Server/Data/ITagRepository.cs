@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace Memorizer.Server.Data
 {
-    public interface IStudyingEntityTextRepository
+    public interface ITagRepository
     {
-        IEnumerable<StudyingEntityText> GetAll();
-        StudyingEntityText GetById(int id);
-        StudyingEntityText Update(StudyingEntityText studyingEntityText);
-        StudyingEntityText Add(StudyingEntityText studyingEntityText);
-        StudyingEntityText Delete(int id);
+        IEnumerable<Tag> GetAll();
+        Tag GetById(string id);
+        Tag Update(Tag studyingEntityText);
+        Tag Add(Tag studyingEntityText);
+        Tag Delete(string id);
         bool Commit();
     }
 }

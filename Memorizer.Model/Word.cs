@@ -11,20 +11,7 @@ namespace Memorizer.Models
         public string Translation { get; set; }
         public string Definition { get; set; }
         public string AssociatedImage { get; set; }
-        public string Language { get; set; }
-        public string TranslationLanguage { get; set; }
-
-        //public Word(string value, string synonyms, string translation, 
-        //            string definition, string associatedImage, 
-        //            string language, string translationLanguage)
-        //{
-        //    Value = value;
-        //    Synonyms = synonyms;
-        //    Translation = translation;
-        //    Definition = definition;
-        //    AssociatedImage = associatedImage;
-        //    Language = language;
-        //    TranslationLanguage = translationLanguage;
-        //}
+        public Language Language { get; set; }
+        public Language TranslationLanguage { get; set; }
     }
 }
