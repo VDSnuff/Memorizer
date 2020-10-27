@@ -1,13 +1,9 @@
-﻿using Memorizer.Server.Models;
-using IdentityServer4.EntityFramework.Options;
+﻿using IdentityServer4.EntityFramework.Options;
+using Memorizer.Server.Models;
 using Microsoft.AspNetCore.ApiAuthorization.IdentityServer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Memorizer.Models;
 
 namespace Memorizer.Server.Data
 {
@@ -28,6 +24,30 @@ namespace Memorizer.Server.Data
         public DbSet<Countries> Countries { get; set; }
         public DbSet<Language> Languages { get; set; }
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
 
+            modelBuilder
+                        .Entity<StudyingEntityWord>()
+                        .Property(e => e.StudyingDataType)
+                        .HasConversion(
+                                        v => v.ToString(),
+                                        v => (StudyingDataType)Enum.Parse(typeof(StudyingDataType), v));
+
+            modelBuilder
+                        .Entity<StudyingEntityText>()
+                        .Property(e => e.StudyingDataType)
+                        .HasConversion(
+                                        v => v.ToString(),
+                                        v => (StudyingDataType)Enum.Parse(typeof(StudyingDataType), v));
+
+            modelBuilder
+                        .Entity<StudyingProcesInfo>()
+                        .Property(e => e.LearningStatus)
+                        .HasConversion(
+                                        v => v.ToString(),
+                                        v => (LearningStatus)Enum.Parse(typeof(LearningStatus), v));
+        }
     }
 }

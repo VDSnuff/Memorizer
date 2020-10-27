@@ -10,14 +10,14 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Memorizer.Server.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20201023135205_Initial")]
+    [Migration("20201027143328_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "3.1.6")
+                .HasAnnotation("ProductVersion", "3.1.9")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -103,173 +103,6 @@ namespace Memorizer.Server.Data.Migrations
                     b.ToTable("PersistedGrants");
                 });
 
-            modelBuilder.Entity("Memorizer.Models.StudyingEntityText", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("ApplicationUserId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<int>("StudyingDataType")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("StudyingProcesInfoId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("TextId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("UserNote")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ApplicationUserId");
-
-                    b.HasIndex("StudyingProcesInfoId");
-
-                    b.HasIndex("TextId");
-
-                    b.ToTable("StudyingEntityTexts");
-                });
-
-            modelBuilder.Entity("Memorizer.Models.StudyingEntityWord", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("ApplicationUserId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<int>("StudyingDataType")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("StudyingProcesInfoId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("UserNote")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("WordId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ApplicationUserId");
-
-                    b.HasIndex("StudyingProcesInfoId");
-
-                    b.HasIndex("WordId");
-
-                    b.ToTable("StudyingEntityWords");
-                });
-
-            modelBuilder.Entity("Memorizer.Models.StudyingProcesInfo", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<DateTime>("CreationDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("LastRepetition")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("LearningStatus")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("NextRepetition")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("RepetitionCount")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("StudyingProcesInfos");
-                });
-
-            modelBuilder.Entity("Memorizer.Models.Tag", b =>
-                {
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<int?>("StudyingEntityTextId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("StudyingEntityWordId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Name");
-
-                    b.HasIndex("StudyingEntityTextId");
-
-                    b.HasIndex("StudyingEntityWordId");
-
-                    b.ToTable("Tags");
-                });
-
-            modelBuilder.Entity("Memorizer.Models.Text", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Language")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Topic")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Value")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Texts");
-                });
-
-            modelBuilder.Entity("Memorizer.Models.Word", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("AssociatedImage")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Definition")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Language")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Synonyms")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Translation")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("TranslationLanguage")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Value")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Words");
-                });
-
             modelBuilder.Entity("Memorizer.Server.Models.ApplicationUser", b =>
                 {
                     b.Property<string>("Id")
@@ -333,6 +166,208 @@ namespace Memorizer.Server.Data.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers");
+                });
+
+            modelBuilder.Entity("Memorizer.Server.Models.Countries", b =>
+                {
+                    b.Property<string>("Code")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Code");
+
+                    b.ToTable("Countries");
+                });
+
+            modelBuilder.Entity("Memorizer.Server.Models.Language", b =>
+                {
+                    b.Property<string>("Code")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Code");
+
+                    b.ToTable("Languages");
+                });
+
+            modelBuilder.Entity("Memorizer.Server.Models.StudyingEntityText", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("ApplicationUserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("StudyingDataType")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("StudyingProcesInfoId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("TextId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("UserNote")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ApplicationUserId");
+
+                    b.HasIndex("StudyingProcesInfoId");
+
+                    b.HasIndex("TextId");
+
+                    b.ToTable("StudyingEntityTexts");
+                });
+
+            modelBuilder.Entity("Memorizer.Server.Models.StudyingEntityWord", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("ApplicationUserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("StudyingDataType")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("StudyingProcesInfoId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("UserNote")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("WordId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ApplicationUserId");
+
+                    b.HasIndex("StudyingProcesInfoId");
+
+                    b.HasIndex("WordId");
+
+                    b.ToTable("StudyingEntityWords");
+                });
+
+            modelBuilder.Entity("Memorizer.Server.Models.StudyingProcesInfo", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("CreationDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("LastRepetition")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("LearningStatus")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("NextRepetition")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("RepetitionCount")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("StudyingProcesInfos");
+                });
+
+            modelBuilder.Entity("Memorizer.Server.Models.Tag", b =>
+                {
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int?>("StudyingEntityTextId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("StudyingEntityWordId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Name");
+
+                    b.HasIndex("StudyingEntityTextId");
+
+                    b.HasIndex("StudyingEntityWordId");
+
+                    b.ToTable("Tags");
+                });
+
+            modelBuilder.Entity("Memorizer.Server.Models.Text", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("LanguageCode")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Topic")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Value")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("LanguageCode");
+
+                    b.ToTable("Texts");
+                });
+
+            modelBuilder.Entity("Memorizer.Server.Models.Word", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("AssociatedImage")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Definition")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LanguageCode")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Synonyms")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Translation")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TranslationLanguageCode")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Value")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("LanguageCode");
+
+                    b.HasIndex("TranslationLanguageCode");
+
+                    b.ToTable("Words");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -470,45 +505,63 @@ namespace Memorizer.Server.Data.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("Memorizer.Models.StudyingEntityText", b =>
+            modelBuilder.Entity("Memorizer.Server.Models.StudyingEntityText", b =>
                 {
                     b.HasOne("Memorizer.Server.Models.ApplicationUser", null)
                         .WithMany("StudyingEntityTexts")
                         .HasForeignKey("ApplicationUserId");
 
-                    b.HasOne("Memorizer.Models.StudyingProcesInfo", "StudyingProcesInfo")
+                    b.HasOne("Memorizer.Server.Models.StudyingProcesInfo", "StudyingProcesInfo")
                         .WithMany()
                         .HasForeignKey("StudyingProcesInfoId");
 
-                    b.HasOne("Memorizer.Models.Text", "Text")
+                    b.HasOne("Memorizer.Server.Models.Text", "Text")
                         .WithMany()
                         .HasForeignKey("TextId");
                 });
 
-            modelBuilder.Entity("Memorizer.Models.StudyingEntityWord", b =>
+            modelBuilder.Entity("Memorizer.Server.Models.StudyingEntityWord", b =>
                 {
                     b.HasOne("Memorizer.Server.Models.ApplicationUser", null)
                         .WithMany("StudyingEntityWords")
                         .HasForeignKey("ApplicationUserId");
 
-                    b.HasOne("Memorizer.Models.StudyingProcesInfo", "StudyingProcesInfo")
+                    b.HasOne("Memorizer.Server.Models.StudyingProcesInfo", "StudyingProcesInfo")
                         .WithMany()
                         .HasForeignKey("StudyingProcesInfoId");
 
-                    b.HasOne("Memorizer.Models.Word", "Word")
+                    b.HasOne("Memorizer.Server.Models.Word", "Word")
                         .WithMany()
                         .HasForeignKey("WordId");
                 });
 
-            modelBuilder.Entity("Memorizer.Models.Tag", b =>
+            modelBuilder.Entity("Memorizer.Server.Models.Tag", b =>
                 {
-                    b.HasOne("Memorizer.Models.StudyingEntityText", null)
+                    b.HasOne("Memorizer.Server.Models.StudyingEntityText", null)
                         .WithMany("Tags")
                         .HasForeignKey("StudyingEntityTextId");
 
-                    b.HasOne("Memorizer.Models.StudyingEntityWord", null)
+                    b.HasOne("Memorizer.Server.Models.StudyingEntityWord", null)
                         .WithMany("Tags")
                         .HasForeignKey("StudyingEntityWordId");
+                });
+
+            modelBuilder.Entity("Memorizer.Server.Models.Text", b =>
+                {
+                    b.HasOne("Memorizer.Server.Models.Language", "Language")
+                        .WithMany()
+                        .HasForeignKey("LanguageCode");
+                });
+
+            modelBuilder.Entity("Memorizer.Server.Models.Word", b =>
+                {
+                    b.HasOne("Memorizer.Server.Models.Language", "Language")
+                        .WithMany()
+                        .HasForeignKey("LanguageCode");
+
+                    b.HasOne("Memorizer.Server.Models.Language", "TranslationLanguage")
+                        .WithMany()
+                        .HasForeignKey("TranslationLanguageCode");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

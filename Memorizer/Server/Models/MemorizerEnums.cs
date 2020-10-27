@@ -1,4 +1,4 @@
-﻿namespace Memorizer.Models
+﻿namespace Memorizer.Server.Models
 {
     public enum StudyingDataType
     {

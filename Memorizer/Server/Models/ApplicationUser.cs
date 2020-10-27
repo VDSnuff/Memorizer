@@ -1,5 +1,4 @@
-﻿using Memorizer.Models;
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Identity;
 using System.Collections.Generic;
 
 namespace Memorizer.Server.Models

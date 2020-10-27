@@ -1,4 +1,4 @@
-﻿using Memorizer.Models;
+﻿using Memorizer.Server.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;

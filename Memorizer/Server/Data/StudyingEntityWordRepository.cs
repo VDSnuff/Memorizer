@@ -1,4 +1,4 @@
-﻿using Memorizer.Models;
+﻿using Memorizer.Server.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using System;

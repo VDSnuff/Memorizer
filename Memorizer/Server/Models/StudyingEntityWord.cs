@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace Memorizer.Models
+namespace Memorizer.Server.Models
 {
     public class StudyingEntityWord
     {

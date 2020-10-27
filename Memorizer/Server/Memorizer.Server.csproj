@@ -6,13 +6,21 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Data\Migrations\20201027141600_NewInitial.cs" />
+    <Compile Remove="Data\Migrations\20201027141600_NewInitial.Designer.cs" />
+    <Compile Remove="Data\Migrations\20201027141651_All.cs" />
+    <Compile Remove="Data\Migrations\20201027141651_All.Designer.cs" />
+    <Compile Remove="Data\Migrations\20201027141757_AllNew.cs" />
+    <Compile Remove="Data\Migrations\20201027141757_AllNew.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="3.2.1" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="3.1.9" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.4" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Memorizer.Model\Memorizer.Models.csproj" />
     <ProjectReference Include="..\Client\Memorizer.Client.csproj" />
     <ProjectReference Include="..\Shared\Memorizer.Shared.csproj" />
   </ItemGroup>
