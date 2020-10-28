@@ -45,9 +45,9 @@ namespace Memorizer.Server.Data
             return studyingEntityWord;
         }
 
-        public List<StudyingEntityWord> GetAll()
+        public async Task<List<StudyingEntityWord>> GetAll()
         {
-            return ctx.StudyingEntityWords.Include(s => s.StudyingProcesInfo).Include(w => w.Word).ToList();
+            return await ctx.StudyingEntityWords.Include(s => s.StudyingProcesInfo).Include(w => w.Word).ToListAsync();
         }
 
         public StudyingEntityWord Update(StudyingEntityWord studyingEntityWord)

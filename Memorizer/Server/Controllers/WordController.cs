@@ -25,7 +25,7 @@ namespace Memorizer.Server.Controllers
         }
 
         [HttpGet]
-        public List<StudyingEntityWord> Get()
+        public Task<List<StudyingEntityWord>> Get()
         {
             return  _repository.GetAll();
         }

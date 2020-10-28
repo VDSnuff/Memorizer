@@ -8,7 +8,7 @@ namespace Memorizer.Server.Data
 {
     public interface IStudyingEntityWordRepository
     {
-        List<StudyingEntityWord> GetAll();
+        Task<List<StudyingEntityWord>> GetAll();
         StudyingEntityWord GetById(int id);
         StudyingEntityWord Update(StudyingEntityWord studyingEntityWord);
         StudyingEntityWord Add(StudyingEntityWord studyingEntityWord);
