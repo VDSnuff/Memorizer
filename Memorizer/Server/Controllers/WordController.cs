@@ -16,9 +16,9 @@ namespace Memorizer.Server.Controllers
     public class WordController : ControllerBase
     {
         private readonly IStudyingEntityWordRepository _repository;
-        private readonly ILogger<StudyingEntityWord> _logger;
+        private readonly ILogger<WordController> _logger;
 
-        public WordController(IStudyingEntityWordRepository repository, ILogger<StudyingEntityWord> logger)
+        public WordController(IStudyingEntityWordRepository repository, ILogger<WordController> logger)
         {
             _repository = repository;
             _logger = logger;
@@ -27,6 +27,7 @@ namespace Memorizer.Server.Controllers
         [HttpGet]
         public Task<List<StudyingEntityWord>> Get()
         {
+            _logger.LogInformation("Get all words API: {Time}", DateTime.UtcNow);
             return  _repository.GetAll();
         }
 

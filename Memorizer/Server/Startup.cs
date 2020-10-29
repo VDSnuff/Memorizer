@@ -13,6 +13,7 @@ using Microsoft.Extensions.Hosting;
 using System.Linq;
 using Memorizer.Server.Data;
 using Memorizer.Server.Models;
+using Serilog;
 
 namespace Memorizer.Server
 {
@@ -70,6 +71,8 @@ namespace Memorizer.Server
             app.UseHttpsRedirection();
             app.UseBlazorFrameworkFiles();
             app.UseStaticFiles();
+           
+            app.UseSerilogRequestLogging();
 
             app.UseRouting();
 
