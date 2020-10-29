@@ -1,4 +1,5 @@
 ﻿using Memorizer.Server.Models;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using System;
@@ -30,18 +31,16 @@ namespace Memorizer.Server.Data
             return ctx.SaveChanges() > 0;
         }
 
-        public StudyingEntityWord GetById(int id)
+        public async Task<StudyingEntityWord> GetById(int id)
         {
-            return ctx.StudyingEntityWords.Find(id);
+            return await ctx.StudyingEntityWords.FindAsync(id);
         }
 
-        public StudyingEntityWord Delete(int id)
+        public Task<StudyingEntityWord> Delete(int id)
         {
             var studyingEntityWord = GetById(id);
-            if (studyingEntityWord != null)
-            {
-                ctx.StudyingEntityWords.Remove(studyingEntityWord);
-            }
+            ctx.StudyingEntityWords.Remove(studyingEntityWord.Result);
+            Commit();
             return studyingEntityWord;
         }
 

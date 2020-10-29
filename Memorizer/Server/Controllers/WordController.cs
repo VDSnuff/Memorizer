@@ -33,10 +33,11 @@ namespace Memorizer.Server.Controllers
 
         // GET api/<WordController>/5
         [HttpGet("{id}")]
-        public ActionResult<StudyingEntityWord> Get(int id)
+        public ActionResult<Task<StudyingEntityWord>> Get(int id)
         {
-            if (_repository.GetById(id) == null) return NotFound();
-            return _repository.GetById(id);
+            var result = _repository.GetById(id);
+            if (result == null) return NotFound();
+            return result;
         }
 
         // POST api/<WordController>
@@ -58,7 +59,7 @@ namespace Memorizer.Server.Controllers
 
         // DELETE api/<WordController>/5
         [HttpDelete("{id}")]
-        public ActionResult<StudyingEntityWord> Delete(int id)
+        public ActionResult<Task<StudyingEntityWord>> Delete(int id)
         {
             if (_repository.GetById(id) == null) return NotFound();
             var studyingEntityWord = _repository.GetById(id);

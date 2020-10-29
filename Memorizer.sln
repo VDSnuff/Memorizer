@@ -11,8 +11,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Memorizer.Shared", "Memoriz
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Memorizer.BL", "Memorizer.BL\Memorizer.BL.csproj", "{9A6252FC-F209-4B96-B12F-8AB6AEE3E77C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Memorizer.Models", "Memorizer.Model\Memorizer.Models.csproj", "{3AA1FFED-48C1-4961-ADE1-E27D42509EC5}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -35,10 +33,6 @@ Global
 		{9A6252FC-F209-4B96-B12F-8AB6AEE3E77C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9A6252FC-F209-4B96-B12F-8AB6AEE3E77C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9A6252FC-F209-4B96-B12F-8AB6AEE3E77C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{3AA1FFED-48C1-4961-ADE1-E27D42509EC5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3AA1FFED-48C1-4961-ADE1-E27D42509EC5}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3AA1FFED-48C1-4961-ADE1-E27D42509EC5}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3AA1FFED-48C1-4961-ADE1-E27D42509EC5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
