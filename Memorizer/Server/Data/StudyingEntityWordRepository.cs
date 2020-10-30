@@ -20,40 +20,48 @@ namespace Memorizer.Server.Data
             this.logger = logger;
         }
 
-        public StudyingEntityWord Add(StudyingEntityWord newStudyingEntityWord)
-        {
-            ctx.Add(newStudyingEntityWord);
-            return newStudyingEntityWord;
-        }
-
-        public bool Commit()
-        {
-            return ctx.SaveChanges() > 0;
-        }
-
-        public async Task<StudyingEntityWord> GetById(int id)
-        {
-            return await ctx.StudyingEntityWords.FindAsync(id);
-        }
-
-        public Task<StudyingEntityWord> Delete(int id)
-        {
-            var studyingEntityWord = GetById(id);
-            ctx.StudyingEntityWords.Remove(studyingEntityWord.Result);
-            Commit();
-            return studyingEntityWord;
-        }
-
         public async Task<List<StudyingEntityWord>> GetAll()
         {
             return await ctx.StudyingEntityWords.Include(s => s.StudyingProcesInfo).Include(w => w.Word).ToListAsync();
         }
 
-        public StudyingEntityWord Update(StudyingEntityWord studyingEntityWord)
+        public async Task<StudyingEntityWord> GetById(long id)
+        {
+            return await ctx.StudyingEntityWords.Include(s => s.StudyingProcesInfo).Include(w => w.Word).FirstOrDefaultAsync(i => i.Id == id);
+        }
+
+        public async Task<StudyingEntityWord> Add(StudyingEntityWord newStudyingEntityWord)
+        {
+            await ctx.AddAsync(newStudyingEntityWord);
+            await Commit();
+            return await GetById(newStudyingEntityWord.Id);
+        }
+
+        public async Task<StudyingEntityWord> Update(StudyingEntityWord studyingEntityWord)
         {
             var entyti = ctx.StudyingEntityWords.Attach(studyingEntityWord);
             entyti.State = EntityState.Modified;
+            await Commit();
             return studyingEntityWord;
         }
+        public async Task<StudyingEntityWord> Delete(long id)
+        {
+            var studyingEntityWord = await ctx.StudyingEntityWords.FirstOrDefaultAsync(x => x.Id == id);
+            if (studyingEntityWord != null) ctx.StudyingEntityWords.Remove(studyingEntityWord);
+            await Commit();
+            return studyingEntityWord;
+        }
+        public async Task<bool> Commit()
+        {
+            return await ctx.SaveChangesAsync() > 0;
+        }
+
+
+
+
+
+
+
+
     }
 }

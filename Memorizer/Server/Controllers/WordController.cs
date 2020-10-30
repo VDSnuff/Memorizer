@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Memorizer.Server.Data;
 using Memorizer.Server.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -27,15 +28,16 @@ namespace Memorizer.Server.Controllers
         [HttpGet]
         public Task<List<StudyingEntityWord>> Get()
         {
-            _logger.LogInformation("Get all words API: {Time}", DateTime.UtcNow);
+            _logger.LogInformation("{Time}: Get all words.", DateTime.UtcNow);
             return  _repository.GetAll();
         }
 
         // GET api/<WordController>/5
         [HttpGet("{id}")]
-        public ActionResult<Task<StudyingEntityWord>> Get(int id)
+        public async Task<ActionResult<StudyingEntityWord>> Get(long id)
         {
-            var result = _repository.GetById(id);
+            _logger.LogInformation("{Time}: Get word by {id}.", DateTime.UtcNow, id);
+            var result = await _repository.GetById(id);
             if (result == null) return NotFound();
             return result;
         }
@@ -51,15 +53,16 @@ namespace Memorizer.Server.Controllers
 
         // PUT api/<WordController>/5
         [HttpPut("{id}")]
-        public void Put(StudyingEntityWord studyingEntityWord)
+        public async Task<ActionResult<StudyingEntityWord>> Put(long id, StudyingEntityWord studyingEntityWord)
         {
-            _repository.Update(studyingEntityWord);
-            _repository.Commit();
+            if (id != studyingEntityWord.Id) return BadRequest();
+            await _repository.Update(studyingEntityWord);
+            return await _repository.GetById(id);
         }
 
         // DELETE api/<WordController>/5
         [HttpDelete("{id}")]
-        public ActionResult<Task<StudyingEntityWord>> Delete(int id)
+        public ActionResult<Task<StudyingEntityWord>> Delete(long id)
         {
             if (_repository.GetById(id) == null) return NotFound();
             var studyingEntityWord = _repository.GetById(id);
