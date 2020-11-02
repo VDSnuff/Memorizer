@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Memorizer.Server.Data;
+using Memorizer.Server.Helpers;
 using Memorizer.Server.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -26,10 +27,10 @@ namespace Memorizer.Server.Controllers
         }
 
         [HttpGet]
-        public Task<List<StudyingEntityWord>> Get()
+        public async Task<ActionResult<StudyingEntityWord>> Get([FromQuery] QueryParamiters queryParamiters)
         {
             _logger.LogInformation("{Time}: Get all words.", DateTime.UtcNow);
-            return  _repository.GetAll();
+            return Ok(await _repository.GetAll(queryParamiters));
         }
 
         // GET api/<WordController>/5
@@ -39,13 +40,14 @@ namespace Memorizer.Server.Controllers
             _logger.LogInformation("{Time}: Get word by {id}.", DateTime.UtcNow, id);
             var result = await _repository.GetById(id);
             if (result == null) return NotFound();
-            return result;
+            return Ok(result);
         }
 
         // POST api/<WordController>
         [HttpPost]
         public ActionResult<StudyingEntityWord> Post(StudyingEntityWord newStudyingEntityWord)
         {
+            _logger.LogInformation("{Time}: Add new word by {id}.", DateTime.UtcNow);
             _repository.Add(newStudyingEntityWord);
             _repository.Commit();
             return CreatedAtAction("Post", new { id = newStudyingEntityWord.Id }, newStudyingEntityWord);
@@ -55,6 +57,7 @@ namespace Memorizer.Server.Controllers
         [HttpPut("{id}")]
         public async Task<ActionResult<StudyingEntityWord>> Put(long id, StudyingEntityWord studyingEntityWord)
         {
+            _logger.LogInformation("{Time}: Update word by {id}.", DateTime.UtcNow, id);
             if (id != studyingEntityWord.Id) return BadRequest();
             await _repository.Update(studyingEntityWord);
             return await _repository.GetById(id);
@@ -64,6 +67,7 @@ namespace Memorizer.Server.Controllers
         [HttpDelete("{id}")]
         public ActionResult<Task<StudyingEntityWord>> Delete(long id)
         {
+            _logger.LogInformation("{Time}: Delete word by {id}.", DateTime.UtcNow, id);
             if (_repository.GetById(id) == null) return NotFound();
             var studyingEntityWord = _repository.GetById(id);
             _repository.Delete(id);
