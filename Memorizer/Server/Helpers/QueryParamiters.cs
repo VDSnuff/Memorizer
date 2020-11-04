@@ -7,13 +7,28 @@ namespace Memorizer.Server.Helpers
 {
     public class QueryParamiters
     {
-        const int _maxSize = 100;
-        private int _size = 50;
+        const int maxSize = 100;
+        private int size = 50;
+        private string sortOrder = "asc";
+
+        public string Value { get; set; }
+        public string SortBy { get; set; } = "Id";
         public int Page { get; set; } = 1;
         public int Size
         {
-            get { return _size; }
-            set { _size = Math.Min(_maxSize, value); }
+            get { return size; }
+            set { size = Math.Min(maxSize, Math.Abs(value)); }
+        }
+        public string SortOrder 
+        {
+            get { return  sortOrder; }
+            set 
+            {
+                if (value == "asc" || value == "desc" )
+                {
+                    sortOrder = value;
+                }
+            }
         }
     }       
 }

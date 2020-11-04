@@ -29,7 +29,14 @@ namespace Memorizer.Server.Data
 
         public async Task<List<StudyingEntityWord>> GetAll(QueryParamiters queryParamiters)
         {
-            return await ctx.StudyingEntityWords.Skip(queryParamiters.Size * (queryParamiters.Page -1)).Include(s => s.StudyingProcesInfo)
+            IQueryable<StudyingEntityWord> result = ctx.StudyingEntityWords;
+            if (!string.IsNullOrEmpty(queryParamiters.Value))
+                result = result.Where(x => x.Word.Value.ToLower().Contains(queryParamiters.Value.ToLower()));
+            if (!string.IsNullOrEmpty(queryParamiters.SortBy))
+                if (typeof(StudyingEntityWord).GetProperty(queryParamiters.SortBy) != null)
+                    result = result.OrderByCustom(queryParamiters.SortBy, queryParamiters.SortOrder);
+
+            return await result.Skip(queryParamiters.Size * (queryParamiters.Page - 1)).Include(s => s.StudyingProcesInfo)
                         .Include(w => w.Word)
                         .Take(queryParamiters.Size).ToListAsync();
         }
