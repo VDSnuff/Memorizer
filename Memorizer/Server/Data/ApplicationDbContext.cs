@@ -28,6 +28,9 @@ namespace Memorizer.Server.Data
         {
             base.OnModelCreating(modelBuilder);
 
+            modelBuilder.Entity<StudyingEntityWord>().ToTable("StudyingEntityWords");
+            modelBuilder.Entity<StudyingEntityText>().ToTable("StudyingEntityTexts");
+
             modelBuilder
                         .Entity<StudyingEntityWord>()
                         .Property(e => e.StudyingDataType)
