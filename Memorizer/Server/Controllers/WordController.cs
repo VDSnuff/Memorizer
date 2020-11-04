@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Memorizer.Server.Data;
+﻿using Memorizer.Server.Data;
 using Memorizer.Server.Helpers;
 using Memorizer.Server.Models;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using System;
+using System.Threading.Tasks;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -45,12 +42,11 @@ namespace Memorizer.Server.Controllers
 
         // POST api/<WordController>
         [HttpPost]
-        public IActionResult Post(StudyingEntityWord newStudyingEntityWord)
+        public async Task<ActionResult<StudyingEntityWord>> Post([FromBody] StudyingEntityWord newStudyingEntityWord)
         {
-            _logger.LogInformation("{Time}: Add new word by {id}.", DateTime.UtcNow);
-            _repository.Add(newStudyingEntityWord);
-            _repository.Commit();
-            return CreatedAtAction("Post", new { id = newStudyingEntityWord.Id }, newStudyingEntityWord);
+            _logger.LogInformation("{Time}: Add new word.", DateTime.UtcNow);
+            await _repository.Add(newStudyingEntityWord);
+            return CreatedAtAction("Get", new { id = newStudyingEntityWord.Id }, newStudyingEntityWord);
         }
 
         // PUT api/<WordController>/5

@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 namespace Memorizer.Server.Models
 {
@@ -11,5 +11,9 @@ namespace Memorizer.Server.Models
         public string UserNote { get; set; }
         public List<Tag> Tags { get; set; }
         public Word Word { get; set; }
+
+        public string ApplicationUserId { get; set; }
+        [JsonIgnore]
+        public ApplicationUser ApplicationUser { get; set; }
     }
 }

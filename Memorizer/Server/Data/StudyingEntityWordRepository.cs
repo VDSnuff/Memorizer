@@ -36,7 +36,8 @@ namespace Memorizer.Server.Data
                 if (typeof(StudyingEntityWord).GetProperty(queryParamiters.SortBy) != null)
                     result = result.OrderByCustom(queryParamiters.SortBy, queryParamiters.SortOrder);
 
-            return await result.Skip(queryParamiters.Size * (queryParamiters.Page - 1)).Include(s => s.StudyingProcesInfo)
+            return await result.Skip(queryParamiters.Size * (queryParamiters.Page - 1))
+                        .Include(s => s.StudyingProcesInfo)
                         .Include(w => w.Word)
                         .Take(queryParamiters.Size).ToListAsync();
         }
@@ -46,11 +47,10 @@ namespace Memorizer.Server.Data
             return await ctx.StudyingEntityWords.Include(s => s.StudyingProcesInfo).Include(w => w.Word).FirstOrDefaultAsync(i => i.Id == id);
         }
 
-        public async Task<StudyingEntityWord> Add(StudyingEntityWord newStudyingEntityWord)
+        public async Task<bool> Add(StudyingEntityWord newStudyingEntityWord)
         {
             await ctx.AddAsync(newStudyingEntityWord);
-            await Commit();
-            return await GetById(newStudyingEntityWord.Id);
+            return await Commit();
         }
 
         public async Task<StudyingEntityWord> Update(StudyingEntityWord studyingEntityWord)

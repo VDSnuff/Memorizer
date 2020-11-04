@@ -11,7 +11,7 @@ namespace Memorizer.Server.Data
         Task<List<StudyingEntityWord>> GetAll(QueryParamiters queryParamiters);
         Task<StudyingEntityWord> GetById(long id);
         Task<StudyingEntityWord> Update(StudyingEntityWord studyingEntityWord);
-        Task<StudyingEntityWord> Add(StudyingEntityWord studyingEntityWord);
+        Task<bool> Add(StudyingEntityWord studyingEntityWord);
         Task<StudyingEntityWord> Delete(long id);
         Task<bool> Commit();
     }
