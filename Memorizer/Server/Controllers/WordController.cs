@@ -27,7 +27,7 @@ namespace Memorizer.Server.Controllers
         public async Task<IActionResult> Get([FromQuery] QueryParamiters queryParamiters)
         {
             _logger.LogInformation("{Time}: Get all words.", DateTime.UtcNow);
-            return Ok(await _repository.GetAll(queryParamiters));
+            return Ok(await _repository.GetAllAsync(queryParamiters));
         }
 
         // GET api/<WordController>/5
@@ -35,7 +35,7 @@ namespace Memorizer.Server.Controllers
         public async Task<IActionResult> Get(long id)
         {
             _logger.LogInformation("{Time}: Get word by {id}.", DateTime.UtcNow, id);
-            var result = await _repository.GetById(id);
+            var result = await _repository.GetByIdAsync(id);
             if (result == null) return NotFound();
             return Ok(result);
         }
@@ -45,7 +45,8 @@ namespace Memorizer.Server.Controllers
         public async Task<ActionResult<StudyingEntityWord>> Post([FromBody] StudyingEntityWord newStudyingEntityWord)
         {
             _logger.LogInformation("{Time}: Add new word.", DateTime.UtcNow);
-            await _repository.Add(newStudyingEntityWord);
+            _repository.Add(newStudyingEntityWord);
+            await _repository.CommitAsync();
             return CreatedAtAction("Get", new { id = newStudyingEntityWord.Id }, newStudyingEntityWord);
         }
 
@@ -55,20 +56,20 @@ namespace Memorizer.Server.Controllers
         {
             _logger.LogInformation("{Time}: Update word by {id}.", DateTime.UtcNow, id);
             if (id != studyingEntityWord.Id) return BadRequest();
-            await _repository.Update(studyingEntityWord);
-            var result = _repository.GetById(id);
-            return Ok(result);
+             _repository.Update(studyingEntityWord);
+            await _repository.CommitAsync();
+            return Ok(await _repository.GetByIdAsync(id));
         }
 
         // DELETE api/<WordController>/5
         [HttpDelete("{id}")]
-        public IActionResult Delete(long id)
+        public async Task<IActionResult> Delete(long id)
         {
-            _logger.LogInformation("{Time}: Delete word by {id}.", DateTime.UtcNow, id);
-            if (_repository.GetById(id) == null) return NotFound();
-            var studyingEntityWord = _repository.GetById(id);
-            _repository.Delete(id);
-            _repository.Commit();
+            _logger.LogInformation("{Time}: Delete word by Id: {id}.", DateTime.UtcNow, id);
+            var studyingEntityWord = await _repository.GetByIdAsync(id);
+            if (studyingEntityWord == null) return NotFound();  
+            await _repository.DeleteAsync(id);
+            await _repository.CommitAsync();
             return Ok(studyingEntityWord);
         }
     }

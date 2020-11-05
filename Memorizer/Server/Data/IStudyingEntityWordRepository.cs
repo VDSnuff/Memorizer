@@ -1,5 +1,6 @@
 ﻿using Memorizer.Server.Helpers;
 using Memorizer.Server.Models;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -7,12 +8,12 @@ namespace Memorizer.Server.Data
 {
     public interface IStudyingEntityWordRepository
     {
-        Task<List<StudyingEntityWord>> GetAll();
-        Task<List<StudyingEntityWord>> GetAll(QueryParamiters queryParamiters);
-        Task<StudyingEntityWord> GetById(long id);
-        Task<StudyingEntityWord> Update(StudyingEntityWord studyingEntityWord);
-        Task<bool> Add(StudyingEntityWord studyingEntityWord);
-        Task<StudyingEntityWord> Delete(long id);
-        Task<bool> Commit();
+        Task<List<StudyingEntityWord>> GetAllAsync();
+        Task<List<StudyingEntityWord>> GetAllAsync(QueryParamiters queryParamiters);
+        Task<StudyingEntityWord> GetByIdAsync(long id);
+        void Update(StudyingEntityWord studyingEntityWord);
+        void Add(StudyingEntityWord studyingEntityWord);
+        Task<StudyingEntityWord> DeleteAsync(long id);
+        Task<bool> CommitAsync();
     }
 }
