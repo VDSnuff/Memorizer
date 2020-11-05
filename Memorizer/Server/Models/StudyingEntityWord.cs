@@ -11,7 +11,7 @@ namespace Memorizer.Server.Models
         //public string UserNote { get; set; }
         //public List<Tag> Tags { get; set; }
         public Word Word { get; set; }
-
+        public List<StudyingEntityWordTag> StudyingEntityWordTags { get; set; }
         //public string ApplicationUserId { get; set; }
         //[JsonIgnore]
         //public ApplicationUser ApplicationUser { get; set; }

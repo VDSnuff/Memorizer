@@ -59,7 +59,7 @@ namespace Memorizer.Server.Data
             ctx.Entry(studyingEntityWord).State = EntityState.Modified;
             if (studyingEntityWord.Word != null) ctx.Entry(studyingEntityWord.Word).State = EntityState.Modified;
             if (studyingEntityWord.StudyingProcesInfo != null)  ctx.Entry(studyingEntityWord.StudyingProcesInfo).State = EntityState.Modified;
-            if(studyingEntityWord.Tags != null) ctx.Entry(studyingEntityWord.Tags).State = EntityState.Modified;
+            if(studyingEntityWord.StudyingEntityWordTags != null) ctx.Entry(studyingEntityWord.StudyingEntityWordTags).State = EntityState.Modified;
         }
         public async Task<StudyingEntityWord> DeleteAsync(long id)
         {

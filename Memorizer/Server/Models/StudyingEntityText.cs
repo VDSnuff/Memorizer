@@ -12,6 +12,7 @@ namespace Memorizer.Server.Models
         //public string UserNote { get; set; }
         //public List<Tag> Tags { get; set; }
         public Text Text { get; set; }
+        public List<StudyingEntityTextTag> StudyingEntityTextTags { get; set; }
 
         //public string ApplicationUserId { get; set; }
         //[JsonIgnore]

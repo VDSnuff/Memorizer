@@ -9,5 +9,10 @@ namespace Memorizer.Server.Models
     {
         [Key]
         public string Name { get; set; }
+        public ICollection<StudyingEntityText> StudyingEntityTexts { get; set; }
+        public List<StudyingEntityTextTag> StudyingEntityTextTags { get; set; }
+
+        public ICollection<StudyingEntityWord> StudyingEntityWords { get; set; }
+        public List<StudyingEntityWordTag> StudyingEntityWordTags { get; set; }
     }
 }
